@@ -45,5 +45,10 @@ public class Player : MonoBehaviour
         {
             currentHealth -= 1;
         }
+
+        if (collision.gameObject.CompareTag("Spikes"))
+        {
+            currentHealth -= 1;
+        }
     }
 }
