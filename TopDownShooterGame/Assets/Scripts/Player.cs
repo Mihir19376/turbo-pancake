@@ -43,12 +43,17 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            currentHealth -= 1;
+            TakeDamage(1);
         }
 
         if (collision.gameObject.CompareTag("Spikes"))
         {
-            currentHealth -= 1;
+            TakeDamage(1);
         }
+    }
+
+    void TakeDamage(int damageAmount)
+    {
+        currentHealth -= damageAmount;
     }
 }
