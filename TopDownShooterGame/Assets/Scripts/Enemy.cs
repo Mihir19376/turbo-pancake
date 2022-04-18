@@ -39,5 +39,10 @@ public class Enemy : MonoBehaviour
             currentHealth -= 1;
         }
 
+        else if (collision.gameObject.CompareTag("Spikes"))
+        {
+            currentHealth -= 1;
+        }
+
     }
 }
