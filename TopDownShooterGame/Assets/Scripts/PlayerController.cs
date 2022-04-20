@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(1);
         }
+
+        if (collision.gameObject.CompareTag("Health Pack"))
+        {
+            currentHealth = maxHealth;
+        }
     }
 
     void TakeDamage(int damageAmount)

@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - bullet
   - Spikes
+  - Thing
+  - Health Pack
   layers:
   - Default
   - TransparentFX
