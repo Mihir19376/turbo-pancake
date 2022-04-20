@@ -5,11 +5,13 @@ using UnityEngine;
 public class HealthPacks : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject point;
+    public GameObject[] point;
 
     void Start()
     {
-        transform.position = new Vector3(point.transform.position.x, 0, point.transform.position.z);
+        int pointIndex = Random.Range(0, point.Length);
+
+        transform.position = new Vector3(point[pointIndex].transform.position.x, 0, point[pointIndex].transform.position.z);
 
     }
 

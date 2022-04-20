@@ -44,5 +44,10 @@ public class Enemy : MonoBehaviour
             currentHealth -= 1;
         }
 
+        else if (collision.gameObject.CompareTag("Walls"))
+        {
+            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+
+        }
     }
 }

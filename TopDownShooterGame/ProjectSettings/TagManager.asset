@@ -9,6 +9,7 @@ TagManager:
   - Spikes
   - Thing
   - Health Pack
+  - Walls
   layers:
   - Default
   - TransparentFX
