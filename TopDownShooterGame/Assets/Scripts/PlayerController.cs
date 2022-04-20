@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float verticalInput;
     public float speed = 10f;
     public float rotateSpeed = 200f;
-    private float maxHealth = 10f;
+    public float maxHealth = 10f;
     public float currentHealth;
 
     // Start is called before the first frame update

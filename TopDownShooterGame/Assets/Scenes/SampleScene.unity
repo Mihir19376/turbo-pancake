@@ -14134,6 +14134,7 @@ MonoBehaviour:
   verticalInput: 0
   speed: 10
   rotateSpeed: 100
+  maxHealth: 10
   currentHealth: 0
 --- !u!54 &1412353906
 Rigidbody:
@@ -17923,6 +17924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1412353900}
+  currentHealth: 0
 --- !u!1001 &1764719087
 PrefabInstance:
   m_ObjectHideFlags: 0

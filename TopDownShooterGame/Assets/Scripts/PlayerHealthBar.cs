@@ -7,6 +7,8 @@ public class PlayerHealthBar : MonoBehaviour
     // Gets the player controller script and puts it in a variable named playerController
     PlayerController playerController;
     public GameObject player;
+    public float currentHealth;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,8 @@ public class PlayerHealthBar : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        transform.localScale = new Vector3(.5f, playerController.currentHealth / playerController.maxHealth, .5f);
+
     }
 }
