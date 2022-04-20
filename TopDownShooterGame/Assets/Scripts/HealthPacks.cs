@@ -9,9 +9,8 @@ public class HealthPacks : MonoBehaviour
 
     void Start()
     {
-        int pointIndex = Random.Range(0, point.Length);
 
-        transform.position = new Vector3(point[pointIndex].transform.position.x, 0, point[pointIndex].transform.position.z);
+        SpawnHealthBoxAtRandomPosition();
 
     }
 
@@ -25,7 +24,14 @@ public class HealthPacks : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            SpawnHealthBoxAtRandomPosition();
+
         }
+    }
+
+    void SpawnHealthBoxAtRandomPosition()
+    {
+        int pointIndex = Random.Range(0, point.Length);
+        transform.position = new Vector3(point[pointIndex].transform.position.x, 0, point[pointIndex].transform.position.z);
     }
 }
