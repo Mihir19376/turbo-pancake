@@ -10,6 +10,7 @@ TagManager:
   - Thing
   - Health Pack
   - Walls
+  - Score Text
   layers:
   - Default
   - TransparentFX

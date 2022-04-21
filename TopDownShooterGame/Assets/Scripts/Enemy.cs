@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     {
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
+
         currentHealth = maxHealth;
     }
 
@@ -51,4 +52,5 @@ public class Enemy : MonoBehaviour
 
         //}
     }
+
 }
