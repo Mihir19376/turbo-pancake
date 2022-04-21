@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private float speed = 2.5f;
-    private float maxHealth = 10f;
+    private float maxHealth = 5f;
     public float currentHealth;
 
     private Rigidbody enemyRb;
@@ -35,7 +35,13 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("bullet"))
+
+        if (collision.gameObject.CompareTag("Walls"))
+        {
+            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+        }
+
+        else if (collision.gameObject.CompareTag("bullet"))
         {
             Destroy(collision.gameObject);
             currentHealth -= 1;
@@ -46,11 +52,6 @@ public class Enemy : MonoBehaviour
             currentHealth -= 1;
         }
 
-        //else if (collision.gameObject.CompareTag("Walls"))
-        //{
-        //    Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
-
-        //}
     }
 
 }
