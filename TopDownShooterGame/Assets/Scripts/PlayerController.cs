@@ -61,4 +61,9 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= damageAmount;
     }
+
+    void RefillHealth()
+    {
+        currentHealth = maxHealth;
+    }
 }

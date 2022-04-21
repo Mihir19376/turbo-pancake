@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody enemyRb;
     private GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,10 +45,10 @@ public class Enemy : MonoBehaviour
             currentHealth -= 1;
         }
 
-        else if (collision.gameObject.CompareTag("Walls"))
-        {
-            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+        //else if (collision.gameObject.CompareTag("Walls"))
+        //{
+        //    Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
 
-        }
+        //}
     }
 }
