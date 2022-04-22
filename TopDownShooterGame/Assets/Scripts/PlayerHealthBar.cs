@@ -10,6 +10,11 @@ public class PlayerHealthBar : MonoBehaviour
     // player)
     // And when done, it will assign that object to a prefab
     public GameObject player;
+    public GameObject healthbar;
+    private float healthbarMaxSize;
+    private float healthbarXSize;
+    private float healthbarZSize;
+    private float healthPercentage;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +22,9 @@ public class PlayerHealthBar : MonoBehaviour
         // makes the playerController variable equal to the Component script
         // named PlayerController (attached to the player game object variable)
         playerController = player.GetComponent<PlayerController>();
+        healthbarMaxSize = healthbar.transform.localScale.y;
+        healthbarXSize = healthbar.transform.localScale.x;
+        healthbarZSize = healthbar.transform.localScale.z;
     }
 
     // Update is called once per frame
@@ -31,10 +39,10 @@ public class PlayerHealthBar : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // every frame, get the player current Health and max health and dived
-        // them to get a float which is asisgned as the y size of the object
-        // this script is attached to (i.e. the health bar)
-        transform.localScale = new Vector3(.5f, playerController.currentHealth / playerController.maxHealth, .5f);
+        // Derives a percentage based on the amount of health the player has left
+        healthPercentage = playerController.currentHealth / playerController.maxHealth;
+        // resizes the 
+        transform.localScale = new Vector3(healthbarXSize, healthPercentage*healthbarMaxSize, healthbarZSize);
 
     }
 }

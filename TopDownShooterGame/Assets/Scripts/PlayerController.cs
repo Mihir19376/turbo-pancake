@@ -6,14 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     public float verticalInput;
     public float speed = 10f;
-    public float rotateSpeed = 200f;
+    public float rotateSpeed = 400f;
     public float maxHealth = 10f;
     public float currentHealth;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Health Pack"))
         {
             currentHealth = maxHealth;
+        }
+
+        if (collision.gameObject.CompareTag("Walls"))
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
     }
 

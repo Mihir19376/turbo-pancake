@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -8,11 +9,14 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRange = 30;
     public int enemyCount;
     public int waveNumber = 3;
+    private int score;
+    public TextMeshProUGUI scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
         SpawnEnemyWave(waveNumber);
+        UpdateScore(0);
     }
 
     // Update is called once per frame
@@ -22,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (enemyCount == 0)
         {
+            UpdateScore(1);
             waveNumber++;
             SpawnEnemyWave(waveNumber);
         }
@@ -41,5 +46,11 @@ public class EnemySpawner : MonoBehaviour
         {
             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
+    }
+
+    private void UpdateScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        scoreText.text = "Score: " + score;
     }
 }
