@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public int waveNumber = 3;
     private int score;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI enemiesLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,8 @@ public class EnemySpawner : MonoBehaviour
             waveNumber++;
             SpawnEnemyWave(waveNumber);
         }
+
+        UpdateEnemiesLeft();
     }
 
     private Vector3 GenerateSpawnPosition()
@@ -52,5 +55,10 @@ public class EnemySpawner : MonoBehaviour
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
+    }
+
+    private void UpdateEnemiesLeft()
+    {
+        enemiesLeft.text = "Enemies Left: " + enemyCount;
     }
 }
