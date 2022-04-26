@@ -6,7 +6,7 @@ using TMPro;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public float spawnRange = 30;
+    private float spawnRange = 20;
     public int enemyCount;
     public int waveNumber = 3;
     private int score;
@@ -23,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         enemyCount = FindObjectsOfType<Enemy>().Length;
 
         if (enemyCount == 0)
@@ -37,9 +38,9 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3 GenerateSpawnPosition()
     {
-        float spawnPosX = Random.Range(-spawnRange, spawnRange);
-        float spawnPosY = Random.Range(-spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 2.5f, spawnPosY);
+        float spawnPosX = Random.Range(- spawnRange, spawnRange);
+        float spawnPosY = Random.Range(- spawnRange, spawnRange);
+        Vector3 randomPos = new Vector3(spawnPosX, .5f, spawnPosY);
         return randomPos;
     }
 
