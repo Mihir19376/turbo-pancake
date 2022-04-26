@@ -11,6 +11,7 @@ TagManager:
   - Health Pack
   - Walls
   - Score Text
+  - Speed Pack
   layers:
   - Default
   - TransparentFX

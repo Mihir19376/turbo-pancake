@@ -5,10 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float verticalInput;
-    public float speed = 10f;
     public float rotateSpeed = 400f;
     public float maxHealth = 10f;
     public float currentHealth;
+
+    public float powerUpSpeed = 20f;
+    public float noPowerUpSpeed = 10f;
+    public float playerSpeed;
+
+    public float powerUpDuration = 5;
+
     private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -16,14 +22,16 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
+        playerSpeed = noPowerUpSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector3(transform.position.x, transform.localScale.y / 2, transform.position.z);
         verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * playerSpeed);
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -55,7 +63,12 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Health Pack"))
         {
-            currentHealth = maxHealth;
+            RefillHealth();
+        }
+
+        if (collision.gameObject.CompareTag("Speed Pack"))
+        {
+            StartCoroutine(ActivateSpeedPowerUp());
         }
 
         if (collision.gameObject.CompareTag("Walls"))
@@ -73,5 +86,12 @@ public class PlayerController : MonoBehaviour
     void RefillHealth()
     {
         currentHealth = maxHealth;
+    }
+
+    IEnumerator ActivateSpeedPowerUp()
+    {
+        playerSpeed = powerUpSpeed;
+        yield return new WaitForSeconds(powerUpDuration);
+        playerSpeed = noPowerUpSpeed;
     }
 }
