@@ -12,6 +12,7 @@ TagManager:
   - Walls
   - Score Text
   - Speed Pack
+  - Bullet Pack
   layers:
   - Default
   - TransparentFX

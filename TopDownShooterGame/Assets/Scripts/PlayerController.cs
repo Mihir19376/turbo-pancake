@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float maxHealth = 10f;
     public float currentHealth;
 
+    public bool rapidBullets = false;
+
     public float powerUpSpeed = 20f;
     public float noPowerUpSpeed = 10f;
     public float playerSpeed;
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float powerUpDuration = 5;
 
     public GameObject speedPowerUpIndicator;
+    public GameObject bulletPowerUpIndicator;
 
     private Rigidbody rb;
 
@@ -74,6 +77,12 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ActivateSpeedPowerUp());
         }
 
+        if (collision.gameObject.CompareTag("Bullet Pack"))
+        {
+            bulletPowerUpIndicator.gameObject.SetActive(true);
+            StartCoroutine(ActivateBulletPowerUp());
+        }
+
         if (collision.gameObject.CompareTag("Walls"))
         {
             rb.velocity = Vector3.zero;
@@ -89,6 +98,14 @@ public class PlayerController : MonoBehaviour
     void RefillHealth()
     {
         currentHealth = maxHealth;
+    }
+
+    IEnumerator ActivateBulletPowerUp()
+    {
+        rapidBullets = true;
+        yield return new WaitForSeconds(powerUpDuration);
+        bulletPowerUpIndicator.gameObject.SetActive(false);
+        rapidBullets = false;
     }
 
     IEnumerator ActivateSpeedPowerUp()

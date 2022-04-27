@@ -9,10 +9,13 @@ public class Fire : MonoBehaviour
     // And when done, it will assign that object to a prefab
     public GameObject projectilePrefab;
 
+    public GameObject player;
+    PlayerController playerController;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -24,7 +27,18 @@ public class Fire : MonoBehaviour
             // The Game object asigned as the projectile prefab will be
             // Instantiated (spawned) at the position and rotation of the object
             // that this script is attached to
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
+
+            if (playerController.rapidBullets == true)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Instantiate(projectilePrefab, transform.position, transform.rotation);
+                }
+            }
+            else
+            {
+                Instantiate(projectilePrefab, transform.position, transform.rotation);
+            }
         }
     }
 }

@@ -22,7 +22,10 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if (!collision.gameObject.CompareTag("bullet"))
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
