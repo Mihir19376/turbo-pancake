@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     public float powerUpDuration = 5;
 
+    public GameObject speedPowerUpIndicator;
+
     private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Speed Pack"))
         {
+            speedPowerUpIndicator.gameObject.SetActive(true);
             StartCoroutine(ActivateSpeedPowerUp());
         }
 
@@ -92,6 +95,7 @@ public class PlayerController : MonoBehaviour
     {
         playerSpeed = powerUpSpeed;
         yield return new WaitForSeconds(powerUpDuration);
+        speedPowerUpIndicator.gameObject.SetActive(false);
         playerSpeed = noPowerUpSpeed;
     }
 }
