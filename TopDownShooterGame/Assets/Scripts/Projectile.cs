@@ -6,7 +6,6 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 40f;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +16,6 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
-
     }
 
     private void OnCollisionEnter(Collision collision)

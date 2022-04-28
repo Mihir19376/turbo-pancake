@@ -38,9 +38,9 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3 GenerateSpawnPosition()
     {
-        float spawnPosX = Random.Range(- spawnRange, spawnRange);
-        float spawnPosY = Random.Range(- spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPosX, .5f, spawnPosY);
+        float spawnPosX = Random.Range(transform.position.x - spawnRange, transform.position.x + spawnRange);
+        float spawnPosZ = Random.Range(transform.position.z - spawnRange, transform.position.z + spawnRange);
+        Vector3 randomPos = new Vector3(spawnPosX, .5f, spawnPosZ);
         return randomPos;
     }
 

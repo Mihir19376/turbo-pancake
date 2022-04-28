@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float verticalInput;
+    public float horizontalInput;
+
     public float rotateSpeed = 400f;
     public float maxHealth = 10f;
     public float currentHealth;
@@ -34,16 +36,18 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.localScale.y / 2, transform.position.z);
+
+        horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * playerSpeed);
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (horizontalInput<0f)
         {
             transform.Rotate(-Vector3.up * rotateSpeed * Time.deltaTime);
         }
             
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (horizontalInput>0f)
         {
             transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
         }

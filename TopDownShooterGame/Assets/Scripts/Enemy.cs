@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private float speed = 2.5f;
-    private float maxHealth = 5f;
+    private float maxHealth = 3f;
     public float currentHealth;
 
     private Rigidbody enemyRb;
