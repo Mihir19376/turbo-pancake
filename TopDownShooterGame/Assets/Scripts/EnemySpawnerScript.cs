@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawnerScript : MonoBehaviour
 {
     public GameObject enemyPrefab;
     private float spawnRange = 20;
@@ -12,28 +13,42 @@ public class EnemySpawner : MonoBehaviour
     private int score;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI enemiesLeft;
+    public bool isGameActive = false;
+    public Button easyButton;
+    public Button mediumButton;
+    public Button hardButton;
+    public GameObject menu;
 
     // Start is called before the first frame update
     void Start()
     {
+        hardButton.onClick.AddListener(SetDifficultyToHard);
+        mediumButton.onClick.AddListener(SetDifficultyToMedium);
+        easyButton.onClick.AddListener(SetDifficultyToEasy);
+
         SpawnEnemyWave(waveNumber);
         UpdateScore(0);
+        scoreText.gameObject.SetActive(true);
+        enemiesLeft.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        enemyCount = FindObjectsOfType<Enemy>().Length;
-
-        if (enemyCount == 0)
+        if (isGameActive == true)
         {
-            UpdateScore(1);
-            waveNumber++;
-            SpawnEnemyWave(waveNumber);
-        }
+            enemyCount = FindObjectsOfType<Enemy>().Length;
 
-        UpdateEnemiesLeft();
+            if (enemyCount == 0)
+            {
+                UpdateScore(1);
+                waveNumber++;
+                SpawnEnemyWave(waveNumber);
+            }
+
+            UpdateEnemiesLeft();
+        }
+        
     }
 
     private Vector3 GenerateSpawnPosition()
@@ -62,4 +77,26 @@ public class EnemySpawner : MonoBehaviour
     {
         enemiesLeft.text = "Enemies Left: " + enemyCount;
     }
+
+    void SetDifficultyToHard()
+    {
+        Debug.Log("Hard");
+        isGameActive = true;
+        menu.SetActive(false);
+    }
+
+    void SetDifficultyToMedium()
+    {
+        Debug.Log("Medium");
+        isGameActive = true;
+        menu.SetActive(false);
+    }
+
+    void SetDifficultyToEasy()
+    {
+        Debug.Log("Easy");
+        isGameActive = true;
+        menu.SetActive(false);
+    }
+
 }

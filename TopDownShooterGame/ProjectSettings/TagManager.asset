@@ -13,6 +13,7 @@ TagManager:
   - Score Text
   - Speed Pack
   - Bullet Pack
+  - Enemy Spawner
   layers:
   - Default
   - TransparentFX

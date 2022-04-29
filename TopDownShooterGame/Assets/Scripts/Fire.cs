@@ -12,9 +12,13 @@ public class Fire : MonoBehaviour
     public GameObject player;
     PlayerController playerController;
 
+    public GameObject enemySpawner;
+    EnemySpawnerScript enemySpawnerScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        enemySpawnerScript = enemySpawner.GetComponent<EnemySpawnerScript>();
         playerController = player.GetComponent<PlayerController>();
     }
 
@@ -24,21 +28,25 @@ public class Fire : MonoBehaviour
         // If the player presses down the spacebar then:
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // The Game object asigned as the projectile prefab will be
-            // Instantiated (spawned) at the position and rotation of the object
-            // that this script is attached to
-
-            if (playerController.rapidBullets == true)
+            if (enemySpawnerScript.isGameActive == true)
             {
-                for (int i = 0; i < 10; i++)
+                // The Game object asigned as the projectile prefab will be
+                // Instantiated (spawned) at the position and rotation of the object
+                // that this script is attached to
+
+                if (playerController.rapidBullets == true)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Instantiate(projectilePrefab, transform.position, transform.rotation);
+                    }
+                }
+                else
                 {
                     Instantiate(projectilePrefab, transform.position, transform.rotation);
                 }
             }
-            else
-            {
-                Instantiate(projectilePrefab, transform.position, transform.rotation);
-            }
+            
         }
     }
 }

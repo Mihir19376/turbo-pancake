@@ -24,9 +24,14 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
 
+    EnemySpawnerScript enemySpawnerScript;
+
+    public GameObject enemySpawner;
+
     // Start is called before the first frame update
     void Start()
     {
+        enemySpawnerScript = enemySpawner.GetComponent<EnemySpawnerScript>();
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
         playerSpeed = noPowerUpSpeed;
@@ -35,27 +40,31 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.localScale.y / 2, transform.position.z);
-
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-
-        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * playerSpeed);
-
-        if (horizontalInput<0f)
+        if (enemySpawnerScript.isGameActive == true)
         {
-            transform.Rotate(-Vector3.up * rotateSpeed * Time.deltaTime);
-        }
-            
-        else if (horizontalInput>0f)
-        {
-            transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x, transform.localScale.y / 2, transform.position.z);
+
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+
+            transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * playerSpeed);
+
+            if (horizontalInput < 0f)
+            {
+                transform.Rotate(-Vector3.up * rotateSpeed * Time.deltaTime);
+            }
+
+            else if (horizontalInput > 0f)
+            {
+                transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
+            }
+
+            //if (currentHealth <= 0)
+            //{
+            //    Destroy(gameObject);
+            //}
         }
 
-        //if (currentHealth <= 0)
-        //{
-        //    Destroy(gameObject);
-        //}
     }
 
     private void OnCollisionEnter(Collision collision)

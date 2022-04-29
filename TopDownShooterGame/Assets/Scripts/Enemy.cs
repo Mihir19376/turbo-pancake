@@ -11,9 +11,16 @@ public class Enemy : MonoBehaviour
     private Rigidbody enemyRb;
     private GameObject player;
 
+    EnemySpawnerScript enemySpawnerScript;
+
+    private GameObject enemySpawner;
+
     // Start is called before the first frame update
     void Start()
     {
+        enemySpawner = GameObject.Find("Enemy Spawner");
+
+        enemySpawnerScript = enemySpawner.GetComponent<EnemySpawnerScript>();
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
 
@@ -23,14 +30,19 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
 
-        enemyRb.AddForce(lookDirection * speed);
-
-        if (currentHealth <= 0)
+        if (enemySpawnerScript.isGameActive == true)
         {
-            Destroy(gameObject);
+            Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+
+            enemyRb.AddForce(lookDirection * speed);
+
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
