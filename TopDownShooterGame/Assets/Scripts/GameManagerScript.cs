@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -12,12 +13,15 @@ public class GameManagerScript : MonoBehaviour
     public Button hardButton;
     public GameObject menu;
     public GameObject enemySpawner;
+
+    public GameObject gameOver;
+    public Button continueButton;
+
     EnemySpawnerScript enemySpawnerScript;
     public bool hardDifficulty;
     public bool mediumDifficulty;
     public bool easyDifficulty;
     public bool hasGameBeenPlayed = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +40,9 @@ public class GameManagerScript : MonoBehaviour
     {
         if (hasGameBeenPlayed == true)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            gameOver.SetActive(true);
+            //continueButton.onClick.AddListener(RestartGameth);
+            //RestartGameth();
         }
     }
 
@@ -68,5 +74,10 @@ public class GameManagerScript : MonoBehaviour
         easyDifficulty = true;
         enemySpawner.gameObject.SetActive(true);
         menu.SetActive(false);
+    }
+
+    public void RestartGameth()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
