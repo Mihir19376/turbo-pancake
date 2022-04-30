@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameManagerScript : MonoBehaviour
     public bool hardDifficulty;
     public bool mediumDifficulty;
     public bool easyDifficulty;
+    public bool hasGameBeenPlayed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,10 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (hasGameBeenPlayed == true)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     void SetDifficultyToHard()

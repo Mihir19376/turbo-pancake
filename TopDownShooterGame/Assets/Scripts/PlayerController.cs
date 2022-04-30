@@ -59,10 +59,11 @@ public class PlayerController : MonoBehaviour
                 transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
             }
 
-            //if (currentHealth <= 0)
-            //{
-            //    Destroy(gameObject);
-            //}
+            if (currentHealth <= 0)
+            {
+                gameManagerScript.isGameActive = false;
+                gameManagerScript.hasGameBeenPlayed = true;
+            }
         }
 
     }
