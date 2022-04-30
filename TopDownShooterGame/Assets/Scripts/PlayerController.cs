@@ -24,14 +24,14 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
 
-    EnemySpawnerScript enemySpawnerScript;
-
-    public GameObject enemySpawner;
+    GameManagerScript gameManagerScript;
+    public GameObject gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemySpawnerScript = enemySpawner.GetComponent<EnemySpawnerScript>();
+        gameManagerScript = gameManager.GetComponent<GameManagerScript>();
+
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
         playerSpeed = noPowerUpSpeed;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemySpawnerScript.isGameActive == true)
+        if (gameManagerScript.isGameActive == true)
         {
             transform.position = new Vector3(transform.position.x, transform.localScale.y / 2, transform.position.z);
 

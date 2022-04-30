@@ -14,6 +14,7 @@ TagManager:
   - Speed Pack
   - Bullet Pack
   - Enemy Spawner
+  - Game Manager
   layers:
   - Default
   - TransparentFX
