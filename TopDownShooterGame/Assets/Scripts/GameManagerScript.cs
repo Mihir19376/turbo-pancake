@@ -12,22 +12,28 @@ public class GameManagerScript : MonoBehaviour
     public Button mediumButton;
     public Button hardButton;
     public GameObject menu;
-    public GameObject enemySpawner;
-
+    
     public GameObject gameOver;
     public Button continueButton;
 
+    public GameObject enemySpawner;
     EnemySpawnerScript enemySpawnerScript;
+
     public bool hardDifficulty;
     public bool mediumDifficulty;
     public bool easyDifficulty;
     public bool hasGameBeenPlayed = false;
+
+    public GameObject enemyPrefab;
+    Enemy enemyPrefabScript;
+
     // Start is called before the first frame update
     void Start()
     {
         hardDifficulty = false;
         mediumDifficulty = false;
         easyDifficulty = false;
+        enemyPrefabScript = enemyPrefab.GetComponent<Enemy>();
         enemySpawnerScript = enemySpawner.GetComponent<EnemySpawnerScript>();
         enemySpawner.gameObject.SetActive(false);
         hardButton.onClick.AddListener(SetDifficultyToHard);
@@ -49,10 +55,11 @@ public class GameManagerScript : MonoBehaviour
     void SetDifficultyToHard()
     {
         enemySpawnerScript.multiplier = 3;
+        enemyPrefabScript.speed = 5;
         Debug.Log("Hard");
         isGameActive = true;
         hardDifficulty = true;
-        enemySpawner.gameObject.SetActive(true);
+        enemySpawner.SetActive(true);
         menu.SetActive(false);
         
     }
@@ -60,24 +67,32 @@ public class GameManagerScript : MonoBehaviour
     void SetDifficultyToMedium()
     {
         enemySpawnerScript.multiplier = 2;
+        enemyPrefabScript.speed = 3.5f;
         Debug.Log("Medium");
         isGameActive = true;
         mediumDifficulty = true;
-        enemySpawner.gameObject.SetActive(true);
+        enemySpawner.SetActive(true);
         menu.SetActive(false);
     }
 
     void SetDifficultyToEasy()
     {
+        enemySpawnerScript.multiplier = 1;
+        enemyPrefabScript.speed = 2.5f;
         Debug.Log("Easy");
         isGameActive = true;
         easyDifficulty = true;
-        enemySpawner.gameObject.SetActive(true);
+        enemySpawner.SetActive(true);
         menu.SetActive(false);
     }
 
     public void RestartGameth()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

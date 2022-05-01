@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float speed = 2.5f;
+    public float speed;
     private float maxHealth = 3f;
     public float currentHealth;
 
@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour
     private GameObject player;
 
     GameManagerScript gameManagerScript;
-    private GameObject gameManager;
+    public GameObject gameManager;
+
 
     // Start is called before the first frame update
     void Start()
