@@ -55,7 +55,7 @@ public class GameManagerScript : MonoBehaviour
     void SetDifficultyToHard()
     {
         enemySpawnerScript.multiplier = 3;
-        enemyPrefabScript.speed = 5;
+        enemyPrefabScript.speed = 3f;
         Debug.Log("Hard");
         isGameActive = true;
         hardDifficulty = true;
@@ -67,7 +67,7 @@ public class GameManagerScript : MonoBehaviour
     void SetDifficultyToMedium()
     {
         enemySpawnerScript.multiplier = 2;
-        enemyPrefabScript.speed = 3.5f;
+        enemyPrefabScript.speed = 2f;
         Debug.Log("Medium");
         isGameActive = true;
         mediumDifficulty = true;
@@ -78,7 +78,7 @@ public class GameManagerScript : MonoBehaviour
     void SetDifficultyToEasy()
     {
         enemySpawnerScript.multiplier = 1;
-        enemyPrefabScript.speed = 2.5f;
+        enemyPrefabScript.speed = 1f;
         Debug.Log("Easy");
         isGameActive = true;
         easyDifficulty = true;

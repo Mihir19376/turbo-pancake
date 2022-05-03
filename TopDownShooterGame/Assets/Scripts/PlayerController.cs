@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
 
-    public float rotateSpeed = 400f;
+    private float rotateSpeed = 150f;
     public float maxHealth = 10f;
     public float currentHealth;
 
@@ -64,6 +64,26 @@ public class PlayerController : MonoBehaviour
                 gameManagerScript.isGameActive = false;
                 gameManagerScript.hasGameBeenPlayed = true;
             }
+
+            if (transform.position.z >= 50)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, 50);
+            }
+            
+            else if (transform.position.z <= -50)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, -50);
+            }
+
+            else if (transform.position.x >= 50)
+            {
+                transform.position = new Vector3(50, transform.position.y, transform.position.z);
+            }
+            
+            else if (transform.position.x <= -50)
+            {
+                transform.position = new Vector3(-50, transform.position.y, transform.position.z);
+            }
         }
 
     }
@@ -107,6 +127,7 @@ public class PlayerController : MonoBehaviour
     void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
+        Debug.Log("Hit");
     }
 
     void RefillHealth()
