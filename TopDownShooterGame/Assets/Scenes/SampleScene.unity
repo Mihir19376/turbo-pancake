@@ -1315,6 +1315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6846871d30be746b78b7791e1efe1101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxXRange: 50
+  maxZRange: 50
   isGameActive: 0
   easyButton: {fileID: 2006091186}
   mediumButton: {fileID: 152765534}
@@ -20346,7 +20348,10 @@ MonoBehaviour:
   enemyPrefab: {fileID: 9207557797037016702, guid: ebd7c37aeed54431e84aec74b9bc58b6, type: 3}
   enemyCount: 0
   waveNumber: 3
+  winningScore: 5
   multiplier: 0
+  gameWonMenu: {fileID: 794756427}
+  continueButton: {fileID: 1454373386}
   scoreText: {fileID: 960953764}
   enemiesLeft: {fileID: 1624403722}
   gameManager: {fileID: 117936037}

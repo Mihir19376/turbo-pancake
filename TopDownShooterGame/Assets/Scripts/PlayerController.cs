@@ -65,24 +65,24 @@ public class PlayerController : MonoBehaviour
                 gameManagerScript.hasGameBeenPlayed = true;
             }
 
-            if (transform.position.z >= 50)
+            if (transform.position.z >= gameManagerScript.maxZRange)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 50);
+                transform.position = new Vector3(transform.position.x, transform.position.y, gameManagerScript.maxZRange);
             }
             
-            else if (transform.position.z <= -50)
+            else if (transform.position.z <= -gameManagerScript.maxZRange)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -50);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -gameManagerScript.maxZRange);
             }
 
-            else if (transform.position.x >= 50)
+            else if (transform.position.x >= gameManagerScript.maxXRange)
             {
-                transform.position = new Vector3(50, transform.position.y, transform.position.z);
+                transform.position = new Vector3(gameManagerScript.maxXRange, transform.position.y, transform.position.z);
             }
             
-            else if (transform.position.x <= -50)
+            else if (transform.position.x <= -gameManagerScript.maxXRange)
             {
-                transform.position = new Vector3(-50, transform.position.y, transform.position.z);
+                transform.position = new Vector3(-gameManagerScript.maxXRange, transform.position.y, transform.position.z);
             }
         }
 
@@ -122,6 +122,15 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
+
+        if (playerSpeed == powerUpSpeed)
+        {
+            if (collision.gameObject.CompareTag("Walls"))
+            {
+                Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+            }
+        }
+
     }
 
     void TakeDamage(int damageAmount)

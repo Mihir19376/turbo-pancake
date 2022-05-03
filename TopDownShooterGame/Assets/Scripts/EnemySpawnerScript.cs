@@ -10,10 +10,16 @@ public class EnemySpawnerScript : MonoBehaviour
     private float spawnRange = 20;
     public int enemyCount;
     public int waveNumber = 3;
+    public int winningScore = 5;
     private int score;
     public int multiplier;
+
+    public GameObject gameWonMenu;
+    public Button continueButton;
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI enemiesLeft;
+
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
 
@@ -33,6 +39,13 @@ public class EnemySpawnerScript : MonoBehaviour
         if (gameManagerScript.isGameActive == true)
         {
             enemyCount = FindObjectsOfType<Enemy>().Length;
+
+            if (score == winningScore)
+            {
+                gameWonMenu.SetActive(true);
+                gameManagerScript.isGameActive = false;
+
+            }
 
             if (enemyCount == 0)
             {

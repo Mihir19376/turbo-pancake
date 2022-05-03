@@ -7,6 +7,9 @@ using TMPro;
 
 public class GameManagerScript : MonoBehaviour
 {
+    public int maxXRange = 50;
+    public int maxZRange = 50;
+
     public bool isGameActive = false;
     public Button easyButton;
     public Button mediumButton;
