@@ -27,12 +27,16 @@ public class GameManagerScript : MonoBehaviour
     public bool easyDifficulty;
     public bool hasGameBeenPlayed = false;
 
+    //public int highScore = 0;
+    //public TextMeshProUGUI highScoreText;
+
     public GameObject enemyPrefab;
     Enemy enemyPrefabScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        //highScoreText.text = "High Score: " + highScore;
         hardDifficulty = false;
         mediumDifficulty = false;
         easyDifficulty = false;
@@ -91,6 +95,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void RestartGameth()
     {
+        //highScore = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
