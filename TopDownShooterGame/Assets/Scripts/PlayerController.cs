@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
 
+    private Vector3 playerDirection;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
