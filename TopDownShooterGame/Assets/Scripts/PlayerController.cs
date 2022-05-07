@@ -7,13 +7,13 @@ public class PlayerController : MonoBehaviour
     public float verticalInput;
     public float horizontalInput;
 
-    private float rotateSpeed = 150f;
+    private float rotateSpeed;
     public float maxHealth = 10f;
     public float currentHealth;
 
     public bool rapidBullets = false;
 
-    public float powerUpSpeed = 20f;
+    public float powerUpSpeed;
     public float noPowerUpSpeed = 10f;
     public float playerSpeed;
 
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem hitByEnemyEffect;
     public Renderer playerRenderer;
 
+    // Curse the American spelling of "colour", its so unatural for me to type
     public Color playerDamageColour;
     public Color playerRegularColour;
 
@@ -42,6 +43,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        powerUpSpeed = noPowerUpSpeed * 2;
+        rotateSpeed = noPowerUpSpeed * 15;
         playerAudioSource = GetComponent<AudioSource>();
         gameManagerScript = gameManager.GetComponent<GameManagerScript>();
 

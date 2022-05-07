@@ -23,9 +23,13 @@ public class EnemySpawnerScript : MonoBehaviour
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
 
+    private AudioSource enemySpawnerAudioSource;
+    public AudioClip newEnemyWaveSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        enemySpawnerAudioSource = GetComponent<AudioSource>();
         score = 0;
         gameManagerScript = gameManager.GetComponent<GameManagerScript>();
         SpawnEnemyWave(waveNumber);
@@ -83,6 +87,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
     void SpawnEnemyWave(int enemiesToSpawn)
     {
+        enemySpawnerAudioSource.PlayOneShot(newEnemyWaveSound, 1);
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);

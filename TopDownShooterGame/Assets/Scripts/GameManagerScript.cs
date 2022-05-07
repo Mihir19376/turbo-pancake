@@ -36,7 +36,7 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //highScoreText.text = "High Score: " + highScore;
+        
         hardDifficulty = false;
         mediumDifficulty = false;
         easyDifficulty = false;
