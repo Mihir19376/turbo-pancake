@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public GameObject speedPowerUpIndicator;
     public GameObject bulletPowerUpIndicator;
 
-    private Rigidbody rb;
+    private Rigidbody playerRb;
 
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         gameManagerScript = gameManager.GetComponent<GameManagerScript>();
 
         currentHealth = maxHealth;
-        rb = GetComponent<Rigidbody>();
+        playerRb = GetComponent<Rigidbody>();
         playerSpeed = noPowerUpSpeed;
 
         playerRenderer.material.color = playerRegularColour;
@@ -133,8 +133,8 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Walls"))
         {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            playerRb.velocity = Vector3.zero;
+            playerRb.angularVelocity = Vector3.zero;
         }
 
         if (collision.gameObject.CompareTag("Enemy"))

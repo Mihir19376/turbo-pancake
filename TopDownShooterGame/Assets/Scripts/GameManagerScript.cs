@@ -31,7 +31,7 @@ public class GameManagerScript : MonoBehaviour
     public TextMeshProUGUI finalScoreText;
 
     public GameObject enemyPrefab;
-    Enemy enemyPrefabScript;
+    EnemyPrefabScript enemyPrefabScript;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,7 @@ public class GameManagerScript : MonoBehaviour
         hardDifficulty = false;
         mediumDifficulty = false;
         easyDifficulty = false;
-        enemyPrefabScript = enemyPrefab.GetComponent<Enemy>();
+        enemyPrefabScript = enemyPrefab.GetComponent<EnemyPrefabScript>();
         enemySpawnerScript = enemySpawner.GetComponent<EnemySpawnerScript>();
         enemySpawner.gameObject.SetActive(false);
         hardButton.onClick.AddListener(SetDifficultyToHard);

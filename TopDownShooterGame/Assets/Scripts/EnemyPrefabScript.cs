@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyPrefabScript : MonoBehaviour
 {
     public float speed;
     private float maxHealth = 3f;
@@ -27,14 +27,29 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Will Extract the AudioSource, of the GameObject this script has
+        // attached to (the the enemyPrefab), and store it for later use in this
+        // AudioSource Variable
         enemyAudioSource = GetComponent<AudioSource>();
-
+        // Will Find the gameObject in the Heicarchy whcih has the tag
+        // "Game Manager" and store this game object in a variable named
+        // gameManager fo later use
         gameManager = GameObject.Find("Game Manager");
+        // Will extract the GameManagerScript component from teh gameManager
+        // variable assinged jusat above and store the script in a variable
+        // named gameManagerScript
         gameManagerScript = gameManager.GetComponent<GameManagerScript>();
 
+        //Finds the rigidbody component of the gameObject this Script is
+        //attached to (the enemy prefab) and stores it in a variable named enemyRb
         enemyRb = GetComponent<Rigidbody>();
+        // Will Find the gameObject in the Heicarchy whcih has the tag
+        // "Player" and store this game object in a variable named
+        // player fo later use
         player = GameObject.Find("Player");
-
+        // Sets the current health variable to the max health the player can
+        // have as soon as the object this script (the enemy prefab)
+        // is attached to starts existingin the heirachy 
         currentHealth = maxHealth;
     }
 

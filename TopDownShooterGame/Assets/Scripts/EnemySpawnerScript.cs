@@ -43,7 +43,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         if (gameManagerScript.isGameActive == true)
         {
-            enemyCount = FindObjectsOfType<Enemy>().Length;
+            enemyCount = FindObjectsOfType<EnemyPrefabScript>().Length;
 
             if (score == winningScore)
             {
@@ -74,9 +74,17 @@ public class EnemySpawnerScript : MonoBehaviour
 
             UpdateEnemiesLeft();
         }
+
+        GenerateSpawnPosition();
         
     }
 
+    
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>A random spawn Position for a enemy as a Vector 3</returns>
     private Vector3 GenerateSpawnPosition()
     {
         float spawnPosX = Random.Range(transform.position.x - spawnRange, transform.position.x + spawnRange);
@@ -85,6 +93,11 @@ public class EnemySpawnerScript : MonoBehaviour
         return randomPos;
     }
 
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="enemiesToSpawn">Numbers of enmies you want spawned in this wave</param>
     void SpawnEnemyWave(int enemiesToSpawn)
     {
         enemySpawnerAudioSource.PlayOneShot(newEnemyWaveSound, 1);
@@ -94,12 +107,21 @@ public class EnemySpawnerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="scoreToAdd">What interger you want to update the scroe by</param>
     private void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
 
+    /// <summary>
+    /// Whenever this method is called, it will update the Enemies left UI with
+    /// the current amount of enemies left (the enemy coutn, whcih is a count
+    /// of all the enmies left on the screen with the EnemyScript on them)
+    /// </summary>
     private void UpdateEnemiesLeft()
     {
         enemiesLeft.text = "Enemies Left: " + enemyCount;
