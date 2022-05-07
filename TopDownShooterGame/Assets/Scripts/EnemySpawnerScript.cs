@@ -11,7 +11,7 @@ public class EnemySpawnerScript : MonoBehaviour
     public int enemyCount;
     public int waveNumber = 3;
     public int winningScore = 5;
-    private int score;
+    public int score;
     public int multiplier;
 
     public GameObject gameWonMenu;
@@ -26,6 +26,7 @@ public class EnemySpawnerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        score = 0;
         gameManagerScript = gameManager.GetComponent<GameManagerScript>();
         SpawnEnemyWave(waveNumber);
         UpdateScore(0);

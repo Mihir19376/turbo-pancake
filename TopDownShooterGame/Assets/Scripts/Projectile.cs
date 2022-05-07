@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     public float speed = 40f;
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
+    public ParticleSystem explostionParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -22,22 +23,27 @@ public class Projectile : MonoBehaviour
 
         if (transform.position.z >= gameManagerScript.maxZRange)
         {
-            Destroy(gameObject);
+            DestroyBullet();
         }
 
         else if (transform.position.z <= -gameManagerScript.maxZRange)
         {
-            Destroy(gameObject);
+            DestroyBullet();
         }
 
         else if (transform.position.x >= gameManagerScript.maxXRange)
         {
-            Destroy(gameObject);
+            DestroyBullet();
         }
 
         else if (transform.position.x <= -gameManagerScript.maxXRange)
         {
-            Destroy(gameObject);
+            DestroyBullet();
+        }
+
+        else if (transform.position.y >= 10)
+        {
+            DestroyBullet();
         }
     }
 
@@ -45,8 +51,20 @@ public class Projectile : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("bullet") || collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            DestroyBullet();
         }
     }
 
+    void DestroyBullet()
+    {
+        Destroy(gameObject);
+        Instantiate(explostionParticle, transform.position, explostionParticle.transform.rotation);
+    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player"))
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

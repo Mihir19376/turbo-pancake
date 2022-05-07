@@ -27,7 +27,12 @@ public class PlayerController : MonoBehaviour
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
 
-    private Vector3 playerDirection;
+    public ParticleSystem hitByEnemyEffect;
+    public Renderer playerRenderer;
+
+    public Color playerDamageColour;
+    public Color playerRegularColour;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +42,8 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
         playerSpeed = noPowerUpSpeed;
+
+        playerRenderer.material.color = playerRegularColour;
     }
 
     // Update is called once per frame
@@ -71,7 +78,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, gameManagerScript.maxZRange);
             }
-            
+
             else if (transform.position.z <= -gameManagerScript.maxZRange)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, -gameManagerScript.maxZRange);
@@ -81,7 +88,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector3(gameManagerScript.maxXRange, transform.position.y, transform.position.z);
             }
-            
+
             else if (transform.position.x <= -gameManagerScript.maxXRange)
             {
                 transform.position = new Vector3(-gameManagerScript.maxXRange, transform.position.y, transform.position.z);
@@ -93,15 +100,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            TakeDamage(1);
-        }
-
-        if (collision.gameObject.CompareTag("Spikes"))
-        {
-            TakeDamage(1);
-        }
 
         if (collision.gameObject.CompareTag("Health Pack"))
         {
@@ -126,6 +124,11 @@ public class PlayerController : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
 
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(TakeDamage(1));
+        }
+
         if (playerSpeed == powerUpSpeed)
         {
             if (collision.gameObject.CompareTag("Walls"))
@@ -134,11 +137,25 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+
     }
 
-    void TakeDamage(int damageAmount)
+    private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Spikes"))
+        {
+            StartCoroutine(TakeDamage(1));
+        }
+    }
+
+
+    IEnumerator TakeDamage(int damageAmount)
+    {
+        hitByEnemyEffect.Play();
         currentHealth -= damageAmount;
+        playerRenderer.material.color = playerDamageColour;
+        yield return new WaitForSeconds(.5f);
+        playerRenderer.material.color = playerRegularColour;
         Debug.Log("Hit");
     }
 

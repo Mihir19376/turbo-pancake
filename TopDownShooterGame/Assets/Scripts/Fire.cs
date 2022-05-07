@@ -38,7 +38,7 @@ public class Fire : MonoBehaviour
                 {
                     for (int i = 0; i < 10; i++)
                     {
-                        Instantiate(projectilePrefab, transform.position, transform.rotation);
+                        Instantiate(projectilePrefab, transform.position, player.transform.rotation);
                     }
                 }
                 else

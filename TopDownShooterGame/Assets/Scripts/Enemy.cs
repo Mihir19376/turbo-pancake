@@ -14,6 +14,12 @@ public class Enemy : MonoBehaviour
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
 
+    public ParticleSystem enemyKilledParticleEffect;
+
+    public Renderer enemyRenderer;
+    public Color enemyRegularcolour;
+    public Color enemyDamagedColor;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +45,7 @@ public class Enemy : MonoBehaviour
 
             if (currentHealth <= 0)
             {
+                Instantiate(enemyKilledParticleEffect, transform.position, enemyKilledParticleEffect.transform.rotation);
                 Destroy(gameObject);
             }
         }
@@ -56,12 +63,7 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.CompareTag("bullet"))
         {
             Destroy(collision.gameObject);
-            currentHealth -= 1;
-        }
-
-        else if (collision.gameObject.CompareTag("Spikes"))
-        {
-            currentHealth -= 1;
+            StartCoroutine(TakeDamage(1));
         }
 
     }
@@ -70,8 +72,16 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Spikes"))
         {
-            currentHealth -= 1;
+            StartCoroutine(TakeDamage(1));
         }
+    }
+
+    IEnumerator TakeDamage(int damageAmount)
+    {
+        currentHealth -= damageAmount;
+        enemyRenderer.material.color = enemyDamagedColor;
+        yield return new WaitForSeconds(.2f);
+        enemyRenderer.material.color = enemyRegularcolour;
     }
 
 }

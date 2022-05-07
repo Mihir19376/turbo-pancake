@@ -129,6 +129,10 @@ MonoBehaviour:
   speed: 1
   currentHealth: 0
   gameManager: {fileID: 0}
+  enemyKilledParticleEffect: {fileID: 4364780945539408192, guid: 53d1d1f0ca9c94eb381f98b9829ba593, type: 3}
+  enemyRenderer: {fileID: 9207557797037016690}
+  enemyRegularcolour: {r: 0.20784314, g: 0.019607844, b: 0.13725491, a: 0}
+  enemyDamagedColor: {r: 0.5660378, g: 0, b: 0, a: 0}
 --- !u!96 &7377705485108952360
 TrailRenderer:
   serializedVersion: 2

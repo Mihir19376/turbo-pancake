@@ -15,6 +15,7 @@ TagManager:
   - Bullet Pack
   - Enemy Spawner
   - Game Manager
+  - Bullet End Particle Explosion
   layers:
   - Default
   - TransparentFX

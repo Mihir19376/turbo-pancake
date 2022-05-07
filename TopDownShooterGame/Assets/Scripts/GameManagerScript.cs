@@ -27,8 +27,8 @@ public class GameManagerScript : MonoBehaviour
     public bool easyDifficulty;
     public bool hasGameBeenPlayed = false;
 
-    //public int highScore = 0;
-    //public TextMeshProUGUI highScoreText;
+    public int finalScore = 0;
+    public TextMeshProUGUI finalScoreText;
 
     public GameObject enemyPrefab;
     Enemy enemyPrefabScript;
@@ -53,6 +53,8 @@ public class GameManagerScript : MonoBehaviour
     {
         if (hasGameBeenPlayed == true)
         {
+            finalScore = enemySpawnerScript.score;
+            finalScoreText.text = "Final Score: " + finalScore;
             gameOver.SetActive(true);
             //continueButton.onClick.AddListener(RestartGameth);
             //RestartGameth();
