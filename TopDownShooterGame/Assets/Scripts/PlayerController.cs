@@ -33,10 +33,16 @@ public class PlayerController : MonoBehaviour
     public Color playerDamageColour;
     public Color playerRegularColour;
 
+    private AudioSource playerAudioSource;
+    public AudioClip collectPowerupSound;
+    public AudioClip playerDamageSound;
+    public AudioClip playerKilledSound;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        playerAudioSource = GetComponent<AudioSource>();
         gameManagerScript = gameManager.GetComponent<GameManagerScript>();
 
         currentHealth = maxHealth;
@@ -70,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
             if (currentHealth <= 0)
             {
+                playerAudioSource.PlayOneShot(playerKilledSound, 1);
                 gameManagerScript.isGameActive = false;
                 gameManagerScript.hasGameBeenPlayed = true;
             }
@@ -103,17 +110,20 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Health Pack"))
         {
+            playerAudioSource.PlayOneShot(collectPowerupSound, 1);
             RefillHealth();
         }
 
         if (collision.gameObject.CompareTag("Speed Pack"))
         {
+            playerAudioSource.PlayOneShot(collectPowerupSound, 1);
             speedPowerUpIndicator.gameObject.SetActive(true);
             StartCoroutine(ActivateSpeedPowerUp());
         }
 
         if (collision.gameObject.CompareTag("Bullet Pack"))
         {
+            playerAudioSource.PlayOneShot(collectPowerupSound, 1);
             bulletPowerUpIndicator.gameObject.SetActive(true);
             StartCoroutine(ActivateBulletPowerUp());
         }
@@ -151,6 +161,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator TakeDamage(int damageAmount)
     {
+        playerAudioSource.PlayOneShot(playerDamageSound, 1);
         hitByEnemyEffect.Play();
         currentHealth -= damageAmount;
         playerRenderer.material.color = playerDamageColour;

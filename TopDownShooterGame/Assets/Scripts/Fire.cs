@@ -15,9 +15,13 @@ public class Fire : MonoBehaviour
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
 
+    public AudioClip shootSound;
+    private AudioSource firePointAudio;
+
     // Start is called before the first frame update
     void Start()
     {
+        firePointAudio = GetComponent<AudioSource>();
         gameManagerScript = gameManager.GetComponent<GameManagerScript>();
         playerController = player.GetComponent<PlayerController>();
     }
@@ -33,6 +37,7 @@ public class Fire : MonoBehaviour
                 // The Game object asigned as the projectile prefab will be
                 // Instantiated (spawned) at the position and rotation of the object
                 // that this script is attached to
+                firePointAudio.PlayOneShot(shootSound, 1);
 
                 if (playerController.rapidBullets == true)
                 {

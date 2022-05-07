@@ -20,10 +20,15 @@ public class Enemy : MonoBehaviour
     public Color enemyRegularcolour;
     public Color enemyDamagedColor;
 
+    private AudioSource enemyAudioSource;
+    public AudioClip enemyDamageSound;
+    public AudioClip enemyKilledSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyAudioSource = GetComponent<AudioSource>();
+
         gameManager = GameObject.Find("Game Manager");
         gameManagerScript = gameManager.GetComponent<GameManagerScript>();
 
@@ -45,8 +50,7 @@ public class Enemy : MonoBehaviour
 
             if (currentHealth <= 0)
             {
-                Instantiate(enemyKilledParticleEffect, transform.position, enemyKilledParticleEffect.transform.rotation);
-                Destroy(gameObject);
+                StartCoroutine(KillEnemy());
             }
         }
         
@@ -78,10 +82,19 @@ public class Enemy : MonoBehaviour
 
     IEnumerator TakeDamage(int damageAmount)
     {
+        enemyAudioSource.PlayOneShot(enemyDamageSound, 1);
         currentHealth -= damageAmount;
         enemyRenderer.material.color = enemyDamagedColor;
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(1);
         enemyRenderer.material.color = enemyRegularcolour;
+    }
+
+    IEnumerator KillEnemy()
+    {
+        enemyAudioSource.PlayOneShot(enemyKilledSound, 1);
+        yield return new WaitForSeconds(.2f);
+        Instantiate(enemyKilledParticleEffect, transform.position, enemyKilledParticleEffect.transform.rotation);
+        Destroy(gameObject);
     }
 
 }
