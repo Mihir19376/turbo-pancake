@@ -119,8 +119,8 @@ public class EnemySpawnerScript : MonoBehaviour
 
     /// <summary>
     /// Whenever this method is called, it will update the Enemies left UI with
-    /// the current amount of enemies left (the enemy coutn, whcih is a count
-    /// of all the enmies left on the screen with the EnemyScript on them)
+    /// the current amount of enemies left (the enemy count, whcih is a count
+    /// of all the enemies left on the screen with the EnemyScript on them)
     /// </summary>
     private void UpdateEnemiesLeft()
     {

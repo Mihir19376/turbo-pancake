@@ -19,9 +19,12 @@ public class PlayerHealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // makes the playerController variable equal to the Component script
-        // named PlayerController (attached to the player game object variable)
         playerController = player.GetComponent<PlayerController>();
+
+        // Because the starting size of the healthBar game oBject is its full
+        // size, the health bar sizes are derived of the y or x or z component
+        // of the local scale component of the transform component derived from
+        // the healthbar
         healthbarMaxSize = healthbar.transform.localScale.y;
         healthbarXSize = healthbar.transform.localScale.x;
         healthbarZSize = healthbar.transform.localScale.z;
@@ -31,7 +34,8 @@ public class PlayerHealthBar : MonoBehaviour
     void Update()
     {
         // if the variable named currentHealth inside the script
-        // playerController is equal to or less that 0 then:
+        // playerController is equal to or less that 0 then carry out the
+        // following code, if not then do nothing
         if (playerController.currentHealth <= 0)
         {
             // Destroy whatever object this script is attached to
@@ -39,9 +43,16 @@ public class PlayerHealthBar : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Derives a percentage based on the amount of health the player has left
+        // Derives a percentage based on the currenthealth (derived from the
+        // playerController script) divided by the maxHealth (derived from the
+        // playerController script)
         healthPercentage = playerController.currentHealth / playerController.maxHealth;
-        // resizes the 
+        // takes the localScale from the transform component this script is
+        // attached to (the healthbar) and creates a new vector 3 to replace the
+        // scale with the default healthbarXSize, default healthbarZSize, but
+        // with the healthPercentage multiplied by the healthbarMaxSize from
+        // above, hence making the y size of the health bar proportionate to the
+        // health the player has left
         transform.localScale = new Vector3(healthbarXSize, healthPercentage*healthbarMaxSize, healthbarZSize);
 
     }

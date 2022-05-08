@@ -36,13 +36,26 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // At the start of the game all the difficulty booleans are set to false
+        // as a mode hasn't been picked yet
         hardDifficulty = false;
         mediumDifficulty = false;
         easyDifficulty = false;
+
+        // Gets the EnemyPrefabScript component from the enemyPrefab and stores
+        // it in a variable named enemyPrefabScript
         enemyPrefabScript = enemyPrefab.GetComponent<EnemyPrefabScript>();
+        // Gets the EnemySpawnerScript component from the enemyPrefab and stores
+        // it in a variable named enemySpawnerScript
         enemySpawnerScript = enemySpawner.GetComponent<EnemySpawnerScript>();
+
+        // The enemySpawner gameobject is set to false, meaning itis not acitve
+        // in heirachy and this means that the script inthe herachy is also not
+        // active
         enemySpawner.gameObject.SetActive(false);
+
+        // for eash of the buttons, on their click they carry out there
+        // respective set difficulty methods
         hardButton.onClick.AddListener(SetDifficultyToHard);
         mediumButton.onClick.AddListener(SetDifficultyToMedium);
         easyButton.onClick.AddListener(SetDifficultyToEasy);
@@ -51,21 +64,45 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if the game has been played, by chekcing if the hasGameBeenPlayed
+        // is set to true. If so it carryies out the following code, if not then
+        // it does nothing
         if (hasGameBeenPlayed == true)
         {
+            // The fianl score is set equal to the score right before the game
+            // ended (derived from enemySpawnerScript)
             finalScore = enemySpawnerScript.score;
+            // Sets the text component of the finalScoreText show the
+            // "Final Score: " + finalScore. e.g if the fianl scfroe before
+            // loosing was 2 it would show "Final Score: 2"
             finalScoreText.text = "Final Score: " + finalScore;
+            // Sets the gameOver boolean to true, whcih other scripts and this
+            // scripts will use as a way to tell the gam eis over and carry out
+            // some code that shoudl stop all gameplay actions
             gameOver.SetActive(true);
-            //continueButton.onClick.AddListener(RestartGameth);
-            //RestartGameth();
         }
     }
 
+    /// <summary>
+    /// When the follwoing 3 methods is called the follwowing happens:
+    ///  - the enemySpawnerScripts' multiplier is set to 3 for Hard 2 for Medium
+    ///  and 1 for Easy, which means the spawn rate goes up by 3, 2, or 1 every wave
+    ///  - the enemySpeed (derived from the enemySpawnerScript)is set is set to
+    ///  3 for Hard 2 for Medium and 1 for Easy making the enemies faster or slower
+    ///  - the isGameActive boolean is set to true, signalling the other script
+    /// the the game is in play
+    ///  - the hardDifficulty or mediumDifficulty or easyDifficulty
+    ///  (depending on what button is clicked) boolean is set to true which
+    ///  other scripts will use as they need to 
+    ///  - the enemySpawner game obejct is set active meaning it and the script
+    ///  on it can now satrt working
+    ///  - the menu gameObject is un set active, meaning the entire menu will
+    ///  dissapear from veiw on the game
+    /// </summary>
     void SetDifficultyToHard()
     {
         enemySpawnerScript.multiplier = 3;
-        enemyPrefabScript.speed = 3f;
-        Debug.Log("Hard");
+        enemyPrefabScript.enemySpeed = 3f;
         isGameActive = true;
         hardDifficulty = true;
         enemySpawner.SetActive(true);
@@ -76,8 +113,7 @@ public class GameManagerScript : MonoBehaviour
     void SetDifficultyToMedium()
     {
         enemySpawnerScript.multiplier = 2;
-        enemyPrefabScript.speed = 2f;
-        Debug.Log("Medium");
+        enemyPrefabScript.enemySpeed = 2f;
         isGameActive = true;
         mediumDifficulty = true;
         enemySpawner.SetActive(true);
@@ -87,20 +123,27 @@ public class GameManagerScript : MonoBehaviour
     void SetDifficultyToEasy()
     {
         enemySpawnerScript.multiplier = 1;
-        enemyPrefabScript.speed = 1f;
-        Debug.Log("Easy");
+        enemyPrefabScript.enemySpeed = 1f;
         isGameActive = true;
         easyDifficulty = true;
         enemySpawner.SetActive(true);
         menu.SetActive(false);
     }
 
+    /// <summary>
+    /// THis method will Reload the scene by getting the SceneManager and using
+    /// the LoadScene method (taking the parameter of what scene to load name
+    /// (the current one which is gotten by usnig the GetActiveScene().name method
+    /// on the SceneManager))
+    /// </summary>
     public void RestartGameth()
     {
-        //highScore = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    // When called it will quit the application. This wont work if you are in
+    // editing mode (i.e. using the Unity Editor to play the game), but it would
+    // work if that game is actiually being played on a game player (like on a app)
     public void QuitGame()
     {
         Application.Quit();

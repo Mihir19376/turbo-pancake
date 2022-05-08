@@ -4,30 +4,31 @@ using UnityEngine;
 
 public class HealthPacks : MonoBehaviour
 {
-    // Start is called before the first frame update
-    // Crates a list in which game object can be stored (in this case it is
-    // inteneded for a set of empty game object placed arosund at specific spots
-    // on the game, I want the health box to spawn at random at one of these spots)
-    public GameObject[] points;
 
+    // // a public GameObejct list where you can add in multiple game objects and
+    // they all get stored in a list called healthPackPositions.
+    // This intened for a bunch of empty game object placed along the arena
+    public GameObject[] healthPackPositions;
+
+    // Start is called before the first frame update
     void Start()
     {
         // Quite Self Explanitory
         SpawnHealthBoxAtRandomPoint();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // Check for collisiosns, and everytime it does, then it will store all the
-    // info about the collision in the variable "collision"
+    /// <summary>
+    /// On a collison, this method will take the info of the collison and store
+    /// it in a variable named "collision". If the collison was a game object
+    /// with the Tag "Player" the it would call the SpawnHealthBoxAtRandomPoint
+    /// method and so spawn the health pack at a random position (which could be
+    /// the same position)
+    /// </summary>
+    /// <param name="collision">icollision info</param>
     private void OnCollisionEnter(Collision collision)
     {
-        // checks against the "ollision" if the Tag of that collided gameObject
-        // is "Player" and if so:
+        // checks if the tage of the gameObject of the collison if "Player" and
+        // so carrys out the following code, if not, does nothing
         if (collision.gameObject.CompareTag("Player"))
         {
             // Again, Self Explanitory
@@ -35,18 +36,25 @@ public class HealthPacks : MonoBehaviour
         }
     }
 
-    // a fucntion that will spawn a Health Box at a one of the random positions
-    // inseted into the points variable
+    /// <summary>
+    /// This method will create a int Varible named pointIndex and assined it a value
+    /// This value is a random number between 0 and the amount of gameObjects in
+    /// the healthPackPositions gameObject list.
+    /// Next the method will take the position of this gameObject,(the one the
+    /// script is attched to, the healthPack) (position dervied from the
+    /// transform componenet on the HealthPack), and turn it into a new Vector3
+    /// with the x position of one of the healthPackPositions gameObjects, the y
+    /// position of 0, and the z position of one of the healthPackPositions
+    /// gameObjects
+    /// </summary>
     void SpawnHealthBoxAtRandomPoint()
     {
-        // Creates a interger variable names pointIndex and sets it to be a
-        // random number aout of the amount of points there are in the points
-        // varaiable
-        int pointIndex = Random.Range(0, points.Length);
-        // Now it will move the position of the object this script is attached
-        // to (the health box), to new vector 3 of the x position of the random
-        // point chosen in the code right above, and same for the z position.
-        // the y position remains the same
-        transform.position = new Vector3(points[pointIndex].transform.position.x, 0, points[pointIndex].transform.position.z);
+
+        int pointIndex = Random.Range(0, healthPackPositions.Length); // the .Length will count how many gameObjects are in that list, and will turn it into a int
+        // helathPackPositions[pointIndex] will choose the pointIndex^st or th (1st, 2nd, 3rd, ...)
+        // from the list of gameObjects and transform will get .transform.position.z-or-x
+        // which takes the x or x position from the positon from the transform
+        // component of the gameObject
+        transform.position = new Vector3(healthPackPositions[pointIndex].transform.position.x, 0, healthPackPositions[pointIndex].transform.position.z);
     }
 }
