@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A spawning script for the Bullet Powerup
+/// </summary>
 public class BulletPacks : MonoBehaviour
 {
     // a public GameObejct list where you can add in multiple game objects and

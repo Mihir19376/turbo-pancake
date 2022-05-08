@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A script attached to the Camera to make it track and move smoothly with the
+/// player
+/// </summary>
 public class CameraController : MonoBehaviour
 {
+    // Gets the transform of the player (the target, but it doesnt have to be
+    // the player)
     public Transform target;
+    /// a offset from the target as a vector 3. As in what amount is wanted for
+    /// offset the camera from the target (x and/or y and/or z)
     public Vector3 targetOffset;
+    // Movement sped of the camera (purposefull less than the playerSpeed, so it
+    // looks like the camra is following the player at some speed and not
+    // continously locked onto it)
     public float movementSpeed = 3;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

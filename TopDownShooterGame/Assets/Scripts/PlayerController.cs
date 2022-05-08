@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script to control the player, its movement, powerup, and health
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public float verticalInput;

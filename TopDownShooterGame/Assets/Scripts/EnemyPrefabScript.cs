@@ -2,24 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This Script controls the enemyPrefab and all its actions, its moving and its
+/// health
+/// </summary>
 public class EnemyPrefabScript : MonoBehaviour
 {
+    // speed of the enemy. Pubioc becaue it is accesed and set in the
+    // GameManager Script
     public float enemySpeed;
-    private float maxHealth = 3f;
+    // Current Health of the enemy. Public because is accesed in other scrpits
     public float currentHealth;
+    // The maxHealth the enemy has.
+    private float maxHealth = 3f;
 
+    // the enemyRb is Rigibody variable
     private Rigidbody enemyRb;
+
+    // The public game object of player
     private GameObject player;
+    // A spot for the Game Manager in the inspector, to get the 
+    public GameObject gameManager;
 
     GameManagerScript gameManagerScript;
-    public GameObject gameManager;
 
     public ParticleSystem enemyKilledParticleEffect;
 
+    // The enemies mesh renders as a Renderer variable named enemyRenderer
     public Renderer enemyRenderer;
+    // Colours used later for effects
     public Color enemyRegularcolour;
     public Color enemyDamagedColor;
 
+    // Audio Source and clips to play
     private AudioSource enemyAudioSource;
     public AudioClip enemyDamageSound;
     public AudioClip enemyKilledSound;
@@ -35,7 +50,7 @@ public class EnemyPrefabScript : MonoBehaviour
         // "Game Manager" and store this game object in a variable named
         // gameManager fo later use
         gameManager = GameObject.Find("Game Manager");
-        // Will extract the GameManagerScript component from teh gameManager
+        // Will extract the GameManagerScript component from the gameManager
         // variable assinged jusat above and store the script in a variable
         // named gameManagerScript
         gameManagerScript = gameManager.GetComponent<GameManagerScript>();

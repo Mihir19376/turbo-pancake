@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A script m=for the collsion, movement, and effects of the bullet/projectile
+/// </summary>
 public class Projectile : MonoBehaviour
 {
+    // Speed the bullet travel forward
     public float bulletSpeed = 40f;
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
+    // A particle system, the explostion particle, used for the bullets impact
+    // with anything
     public ParticleSystem explostionParticle;
 
     // Start is called before the first frame update

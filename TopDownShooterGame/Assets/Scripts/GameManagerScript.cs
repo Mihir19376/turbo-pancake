@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+/// <summary>
+/// The Game Manager script which is the script that controls and sets many
+/// menu setting and difficulty booleans
+/// </summary>
 public class GameManagerScript : MonoBehaviour
 {
     public int maxXRange = 50;

@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A spawning script for the Health Pack
+/// </summary>
 public class HealthPacks : MonoBehaviour
 {
-
     // // a public GameObejct list where you can add in multiple game objects and
     // they all get stored in a list called healthPackPositions.
     // This intened for a bunch of empty game object placed along the arena

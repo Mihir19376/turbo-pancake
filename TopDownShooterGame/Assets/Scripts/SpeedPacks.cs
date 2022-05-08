@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A spawning script for the Speed Powerup
+/// </summary>
 public class SpeedPacks : MonoBehaviour
 {
     // a public GameObejct list where you can add in multiple game objects and

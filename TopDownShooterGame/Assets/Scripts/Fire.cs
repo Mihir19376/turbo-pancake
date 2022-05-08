@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The Fire Scipt attched to the fire point, where the shooting mechanism works
+/// </summary>
 public class Fire : MonoBehaviour
 {
     // Will provide a spot in the unity inspector to attach a GameObject (the
-    // projectle prefab).
-    // And when done, it will assign that object to a prefab
+    // projectle prefab, player and game manager).
     public GameObject projectilePrefab;
-
     public GameObject player;
-    PlayerController playerControllerScript;
-
-    GameManagerScript gameManagerScript;
     public GameObject gameManager;
 
+    // Creates scripts vairable 
+    PlayerController playerControllerScript;
+    GameManagerScript gameManagerScript;
+
+    // a public caufdio clip named shootSound where the audio clip is inserted
+    // in the script component in the inspector
     public AudioClip shootSound;
+    // The firePointAudio varible which stores the AudioSource
     private AudioSource firePointAudio;
 
     // Start is called before the first frame update
