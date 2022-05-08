@@ -7,19 +7,18 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    public bool rapidBullets = false;
+
     public float verticalInput;
     public float horizontalInput;
 
-    private float rotateSpeed;
     public float maxHealth = 10f;
     public float currentHealth;
 
-    public bool rapidBullets = false;
-
+    private float rotateSpeed;
     public float powerUpSpeed;
     public float noPowerUpSpeed = 10f;
     public float playerSpeed;
-
     public float powerUpDuration = 5;
 
     public GameObject speedPowerUpIndicator;
