@@ -41,11 +41,11 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Checks If the Space Key is pressed
+        // Checks If the fire Key is pressed
         // To do this, it Finds the Input, checks if that input is a KeyPress,
-        // and then check if the Key pressed has the Key Code "Space" and if so,
+        // and then check if the Key pressed is the Fire1 key and if so,
         // carrys out the code below, if not then does nothing
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Fire1"))
         {
             // Checks if the isGameActive Boolean in the gameManagerScript is
             // set to true and if so carrys out the follwoing code below, if not

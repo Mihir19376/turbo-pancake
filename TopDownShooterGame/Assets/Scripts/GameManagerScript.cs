@@ -11,14 +11,20 @@ using TMPro;
 /// </summary>
 public class GameManagerScript : MonoBehaviour
 {
+    // Max z and x ranges the bullets and player can go
     public int maxXRange = 50;
     public int maxZRange = 50;
 
+    // a univeral boolaen letting other scripts know ehnt he game is active and
+    // so when to star certain functions (for instance, I dont want the player
+    // to be able to move or to shoot while the player is still in the menu)
     public bool isGameActive = false;
-    public Button easyButton;
-    public Button mediumButton;
-    public Button hardButton;
-    public GameObject menu;
+
+    // Buttons to choose the difficulty modes and the main menu game obejct
+    public Button easyDifficultyButton;
+    public Button mediumDifficultyButton;
+    public Button hardDifficultyButton;
+    public GameObject mainMenu;
     
     public GameObject gameOver;
     public Button continueButton;
@@ -60,9 +66,9 @@ public class GameManagerScript : MonoBehaviour
 
         // for eash of the buttons, on their click they carry out there
         // respective set difficulty methods
-        hardButton.onClick.AddListener(SetDifficultyToHard);
-        mediumButton.onClick.AddListener(SetDifficultyToMedium);
-        easyButton.onClick.AddListener(SetDifficultyToEasy);
+        hardDifficultyButton.onClick.AddListener(SetDifficultyToHard);
+        mediumDifficultyButton.onClick.AddListener(SetDifficultyToMedium);
+        easyDifficultyButton.onClick.AddListener(SetDifficultyToEasy);
     }
 
     // Update is called once per frame
@@ -110,7 +116,7 @@ public class GameManagerScript : MonoBehaviour
         isGameActive = true;
         hardDifficulty = true;
         enemySpawner.SetActive(true);
-        menu.SetActive(false);
+        mainMenu.SetActive(false);
         
     }
 
@@ -121,7 +127,7 @@ public class GameManagerScript : MonoBehaviour
         isGameActive = true;
         mediumDifficulty = true;
         enemySpawner.SetActive(true);
-        menu.SetActive(false);
+        mainMenu.SetActive(false);
     }
 
     void SetDifficultyToEasy()
@@ -131,7 +137,7 @@ public class GameManagerScript : MonoBehaviour
         isGameActive = true;
         easyDifficulty = true;
         enemySpawner.SetActive(true);
-        menu.SetActive(false);
+        mainMenu.SetActive(false);
     }
 
     /// <summary>

@@ -7,34 +7,50 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    // this bool sigmals whether the bullet powerup is on or not
     public bool rapidBullets = false;
 
+    // w,s/up,down keys
     public float verticalInput;
+    // a,d/left,rightkeys
     public float horizontalInput;
-
+    // max health the player has
     public float maxHealth = 10f;
+    // the current health the update every frame
     public float currentHealth;
 
+    // speed at whcih the player rotates left or right
     private float rotateSpeed;
+    // speed of player when they have the speed powerup
     public float powerUpSpeed;
+    // speed the player has when they dont have the speed powerup
     public float noPowerUpSpeed = 10f;
+    // speed that changes based on if they do or dont have the powerup
     public float playerSpeed;
+    // How long each powerup lasts
     public float powerUpDuration = 5;
 
+    // the powerup indicator game obejcts whcih switch on when you have specific
+    // powerups and siwtch of when you dont
     public GameObject speedPowerUpIndicator;
     public GameObject bulletPowerUpIndicator;
 
+    // the game maneger game obejct and script (I use the game manager object
+    // to extract the script from and store in a in the script vairable)
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
 
+    // A particle effect
     public ParticleSystem hitByEnemyEffect;
-    public Renderer playerRenderer;
 
+    public Renderer playerRenderer;
     // Curse the American spelling of "colour", its so unatural for me to type
     public Color playerDamageColour;
     public Color playerRegularColour;
 
+    // Audio source compoenent from the insprector
     private AudioSource playerAudioSource;
+    // a bunch of sounds that are played from the audio source above
     public AudioClip collectPowerupSound;
     public AudioClip playerDamageSound;
     public AudioClip playerKilledSound;
