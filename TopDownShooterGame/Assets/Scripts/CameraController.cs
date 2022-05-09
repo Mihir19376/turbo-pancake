@@ -5,6 +5,8 @@ using UnityEngine;
 /// <summary>
 /// A script attached to the Camera to make it track and move smoothly with the
 /// player
+/// This Script is adapted from this video:
+/// https://www.youtube.com/watch?v=sDT7v_BJnsk&ab_channel=Ajackster
 /// </summary>
 public class CameraController : MonoBehaviour
 {

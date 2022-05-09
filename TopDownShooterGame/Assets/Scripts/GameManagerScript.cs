@@ -173,6 +173,8 @@ public class GameManagerScript : MonoBehaviour
     // When called it will quit the application. This wont work if you are in
     // editing mode (i.e. using the Unity Editor to play the game), but it would
     // work if that game is actiually being played on a game player (like on a app)
+    // This code fro quitting the game is adapted from this video:
+    // https://www.youtube.com/watch?v=WRoIw3ktZTE&ab_channel=KapKoder
     public void QuitGame()
     {
         Application.Quit();

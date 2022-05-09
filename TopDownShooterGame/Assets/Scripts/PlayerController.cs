@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
 
     public Renderer playerRenderer;
     // Curse the American spelling of "colour", its so unatural for me to type
+    // the Colour changing part of this script is adapted from this video:
+    // https://www.youtube.com/watch?v=uOdJg4Ap3xM&ab_channel=wolfscrygames
     public Color playerDamageColour;
     public Color playerRegularColour;
 
