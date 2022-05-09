@@ -24,22 +24,41 @@ public class GameManagerScript : MonoBehaviour
     public Button easyDifficultyButton;
     public Button mediumDifficultyButton;
     public Button hardDifficultyButton;
+    // The main menu enmpty game obejct where all the main menu buttona and
+    // texts are stored as child objects. Set this to active or not acrive,
+    // will autiomaticlly set everything it carry to active or not too
     public GameObject mainMenu;
-    
-    public GameObject gameOver;
+
+    // the gameoverandlost menu game object it doest the same thing as the one
+    // above, but is called when the player looses
+    public GameObject gameOverAndLost;
+    // A contines button, to continue back to the main menu (by reloading the
+    // scene)
     public Button continueButton;
 
+    // EnemySpawener where the enemySpawnerScript is stroed andextracted in the
+    // script
     public GameObject enemySpawner;
+    // Enemy spawner script used to change the wave multiplier and to check the
+    // current score
     EnemySpawnerScript enemySpawnerScript;
 
+    // The difficulty booleans which when one is set to true, changes the factor
+    // of the eenmies spawn rate
     public bool hardDifficulty;
     public bool mediumDifficulty;
     public bool easyDifficulty;
+    // used to check is that game has been played 
     public bool hasGameBeenPlayed = false;
 
+    // the final score before loosing and its text obejct on whcih is displayed
+    // on the lose menu
     public int finalScore = 0;
     public TextMeshProUGUI finalScoreText;
 
+    // the enemy prefab where the enemyPrefabScript will be extracted as a
+    // component to changes the speed of the nemies based on the difficulty
+    // level chosen
     public GameObject enemyPrefab;
     EnemyPrefabScript enemyPrefabScript;
 
@@ -89,7 +108,7 @@ public class GameManagerScript : MonoBehaviour
             // Sets the gameOver boolean to true, whcih other scripts and this
             // scripts will use as a way to tell the gam eis over and carry out
             // some code that shoudl stop all gameplay actions
-            gameOver.SetActive(true);
+            gameOverAndLost.SetActive(true);
         }
     }
 
@@ -111,7 +130,7 @@ public class GameManagerScript : MonoBehaviour
     /// </summary>
     void SetDifficultyToHard()
     {
-        enemySpawnerScript.multiplier = 3;
+        enemySpawnerScript.waveMultiplier = 3;
         enemyPrefabScript.enemySpeed = 3f;
         isGameActive = true;
         hardDifficulty = true;
@@ -122,7 +141,7 @@ public class GameManagerScript : MonoBehaviour
 
     void SetDifficultyToMedium()
     {
-        enemySpawnerScript.multiplier = 2;
+        enemySpawnerScript.waveMultiplier = 2;
         enemyPrefabScript.enemySpeed = 2f;
         isGameActive = true;
         mediumDifficulty = true;
@@ -132,7 +151,7 @@ public class GameManagerScript : MonoBehaviour
 
     void SetDifficultyToEasy()
     {
-        enemySpawnerScript.multiplier = 1;
+        enemySpawnerScript.waveMultiplier = 1;
         enemyPrefabScript.enemySpeed = 1f;
         isGameActive = true;
         easyDifficulty = true;

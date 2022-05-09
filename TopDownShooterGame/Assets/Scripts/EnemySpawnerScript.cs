@@ -9,24 +9,51 @@ using UnityEngine.UI;
 /// </summary>
 public class EnemySpawnerScript : MonoBehaviour
 {
+    // the prefab (enemy) that this cript will spawn 
     public GameObject enemyPrefab;
-    private float spawnRange = 20;
+
+    // the decimal range around the player in which the enemies will be spawned
+    private float spawnRange = 20f;
+    // the Count of enmies on teh screen, so display on the UI and to tell the
+    // script when the enemies have been all destroyed (when the enemy count is
+    // 0)
     public int enemyCount;
+    // int of enemies in each wave, defaulty it is set to 3, but will
+    // increase as each wave is killed
     public int waveNumber = 3;
+    // The amount of waves needed to be defeated to win thr game (5)
     public int winningScore = 5;
+    // The current score of the game, updatetd every time a wave in defeated
     public int score;
-    public int multiplier;
+    // The multiplier that decides the the amount of enemies spawned after each
+    // wave (e.g. if the multiplier was 2, two time the enemies would spawn
+    // reletive to the last wave)
+    public int waveMultiplier;
+    // the Y position of the enemies (which will be set later so that the
+    // enemies always spawn right at the level of the ground)
     private float enemySpawnPositionY;
 
+    // The gameWonMenu enmpty game obejct where all the gameWonMenu buttons and
+    // texts are stored as child objects. Set this to active or not active,
+    // will autiomaticlly set everything it carry to active or not too
     public GameObject gameWonMenu;
+    // A contines button, to continue back to the main menu (by reloading the
+    // scene)
     public Button continueButton;
 
+    // a Text game obejct which is updated with and dispays the score eof the game
     public TextMeshProUGUI scoreText;
+    // a Text game obejct which is updated with and dispays the amouunt of
+    // enemies left in the game
     public TextMeshProUGUI enemiesLeft;
 
+    // the game maneger game obejct and script (I use the game manager object
+    // to extract the script from and store in a in the script vairable)
     GameManagerScript gameManagerScript;
     public GameObject gameManager;
 
+    // The audio source compoent from which the newEnemyWaveSound audio
+    // sound/clip will play from
     private AudioSource enemySpawnerAudioSource;
     public AudioClip newEnemyWaveSound;
 
@@ -103,14 +130,14 @@ public class EnemySpawnerScript : MonoBehaviour
                 // (which is lower for medium difficulty)
                 else if (gameManagerScript.mediumDifficulty == true)
                 {
-                    waveNumber *= multiplier;
+                    waveNumber *= waveMultiplier;
                 }
                 // If the hardDifficulty (derived from the gameManagerScript) is
                 // set to true then mutiply the waveNumber by the multiplier
                 // (which is hgiher for hardDifficulty)
                 else if (gameManagerScript.hardDifficulty == true)
                 {
-                    waveNumber *= multiplier;
+                    waveNumber *= waveMultiplier;
                 }
 
                 // Spawn a wave of enemies (with the newly modified waveNumber)
